@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+
+    <title>NG-MASTERS - Curse of AngularJS</title>
+
+    <link rel="stylesheet" type="text/css" href="content/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="content/css/style.css">
+    
+    <link rel="stylesheet" href="content/metroui/css/metro-bootstrap.css">
+    <link rel="stylesheet" href="content/metroui/css/metro-bootstrap-responsive.css">
+
+    <link rel="stylesheet" type="text/css" href="content/bootstrap3/css/bootstrapp.css">
+
+
+
+</head>
+<body class="metro">
+    <!-- Start NavBar -->
+    <div>
+        <nav class="navigation-bar dark">
+            <nav class="navigation-bar-content">
+                <div class="element">
+                    <a class="dropdown-toggle" href="#">NG-MASTERS</a>
+                    <ul class="dropdown-menu" data-role="dropdown">
+                        <li><a href="index.html">NG-MASTERS - Course Home</a></li>
+                        <li><a href="http://hhalmeida.github.io">HUGO ALMEIDA IO PAGES</a></li>
+                    </ul>
+                </div>
+
+                <span class="element-divider"></span>
+                <a class="element brand" href="#" data-hint="To reload this page click here" data-hint-position="bottom"><span class="icon-spin"></span></a>
+
+                <span class="element-divider"></span>
+            
+                <div class="element input-element">
+                    <a class="dropdown-toggle" href="#"><span class="icon-cog"></span> Exercicies</a>
+                    <ul class="dropdown-menu" data-role="dropdown">
+                        <li><a href="getIssues.html">Exercicies lesson one</a></li>
+                        <li><a href="#">Exercicies lesson two</a></li>
+                        <li><a href="#">Exercicies lesson tree</a></li>
+                    </ul>
+                </div>
+                <span class="element-divider"></span>
+
+                <div class="element place-right">
+                    
+                </div>
+
+                <span class="element-divider place-right"></span>
+                <a class="element place-right" href="https://www.facebook.com/hugobregagnoli"><span class="icon-facebook"></span></a>
+                <span class="element-divider place-right"></span>
+                <a class="element place-right" href="https://plus.google.com/u/0/102987409747083100638/"><span class="icon-google"></span></a>
+                <span class="element-divider place-right"></span>
+                <a class="element place-right" href="https://github.com/hhalmeida"><span class="icon-github"></span></a>
+                <span class="element-divider place-right"></span>
+                <button class="element image-button image-left place-right">
+                    Hugo Almeida
+                    <img src="https://lh5.googleusercontent.com/-4IZsJ4ad9eM/VCgzz9C_tYI/AAAAAAAAABU/IALyatlkpvc/w538-h540-no/IMG_20140609_140348159.jpg"/>
+                </button>
+            </nav>
+        </nav>
+    </div>
+
+    <!-- End Navbar -->
+    
+    <!-- Start Content site -->
+
+
+
+    <div class="container">
+        <header class="margin20 nrm nlm">
+            <div class="clearfix">
+                <a class="place-left" href="#" title=""><h1>Get Github issues.</h1></a>
+            </div>
+        </header>
+        <div class="grid fluid ">
+            <div class="row">
+                <div class="span12" >
+                    <div class="row">
+                        <div class="span8 column">
+
+                        <div class="">
+                            <table id="issuesTable"class="table bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Number</th>
+                                        <th class="text-left">Issue Title</th>
+                                        <th class="text-left">Description</th>
+
+                                    </tr>
+                                </thead>
+
+                                
+
+                                <tfoot></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                        <div class="span4 column">
+                            <div class="">
+                                <form>
+                                    <fieldset>
+                                        <legend>Access</legend>
+                                        <label>Username</label>
+                                        <div class="input-control text" data-role="input-control">
+                                            <input type="text" id="username" placeholder="Enter your username">
+                                            <button class="btn-clear" tabindex="-1" autofocus></button>
+                                        </div>
+                                        <label>Repository</label>
+                                        <div class="input-control text" data-role="input-control">
+                                            <input type="text" id="repository" placeholder="Enter your Repository">
+                                            <button class="btn-clear" tabindex="1"></button>
+                                        </div>
+                                    
+                                        <myButton onclick="getissues()" class="command-button primary">
+                                            <i class="icon-github on-left"></i>
+                                            Yes, get issues
+                                            <small>Use this button for get issues on github</small>
+                                        </myButton>
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Content site -->
+    
+    <!-- Start footer -->
+    <footer>
+        <div class="navigation-bar light fixed-bottom" role="">
+            <center><p style="margin-top: 13px;">Copyright 2014 - Hugo Almeida IO GitPages</p></center>
+        </div>
+    </footer>
+    <!-- Start footer -->
+
+<!-- Start JavaScript Session -->
+    
+    <script src="content/js/jquery-2.1.1.js"></script>
+
+    <script src="content/metroui/js/jquery.widget.min.js"></script>
+
+    <script src="content/metroui/min/metro.min.js"></script>
+    <script src="content/metroui/js/metro-hint.js"></script>
+    <script src="content/metroui/js/metro-button-set.js"></script>
+
+    <script src="content/js/doc.js"></script>
+
+    <script type="text/javascript">
+
+    function getissues(){
+    
+        function getGitHubRepo(username, reponame){
+
+            //this.url variable receives this URL with username and repository. 
+            this.url = 'https://api.github.com/repos/'+username+'/'+reponame+'/issues'
+
+            //jQuery.get() receive this.url and return data(issues from github in data)
+            $.get(this.url, function(data){
+                
+
+                for (var i = 0; i < data.length; i++) {
+                    addIssues(data[i]);
+                    console.log("Number: "+data[i].number+"Title: "+data[i].title+"Description: "+data[i].body);
+                };
+                //alert("Data: " + data[0].body);
+            
+            });   
+
+            function addIssues(issues){
+                var issuesHTML = '<tbody>';
+                    issuesHTML += '<tr>';
+                    issuesHTML += '<td>'+ issues.number +'</td>';
+                    issuesHTML += '<td>'+ issues.title +'</td>';
+                    issuesHTML += '<td>'+ issues.body +'</td>';
+                    issuesHTML += '</tr>';
+                    issuesHTML += '</tbody>';
+                $('#issuestable').append(issuesHTML)
+            }
+        
+
+        }
+
+
+
+        var username = $('#username').val();
+        var reponame = $('#repository').val();
+
+
+            //mais um pouco de codigo aqui....
+
+       //var le_repo = GithubRepo(username, reponame);
+       //le_repo.busca_issues_e_popula_tabela("#issuestable");
+
+       getGitHubRepo(username, reponame);
+
+    }
+
+
+    </script>
+<!-- End JavaScript Session -->
+
+
+</body>
+</html>
