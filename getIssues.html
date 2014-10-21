@@ -161,25 +161,26 @@
             //jQuery.get() receive this.url and return data(issues from github in data)
             $.get(this.url, function(data){
                 
+            	$('#issuesTable tbody').remove();
 
                 for (var i = 0; i < data.length; i++) {
                     addIssues(data[i]);
-                    $('#issuesTable').append('<tr><td>'+data[i].number+'</td><td>'+data[i].title+'</td><td>'+data[i].body+'</td></tr>');
+                    //$('#issuesTable').append('<tr><td>'+data[i].number+'</td><td>'+data[i].title+'</td><td>'+data[i].body+'</td></tr>');
                     console.log("Number: "+data[i].number+"Title: "+data[i].title+"Description: "+data[i].body);
                 };
                 //alert("Data: " + data[0].body);
             
             });   
 
-            function addIssues(issues){
+            function addIssues(data){
                 var issuesHTML = '<tbody>';
                     issuesHTML += '<tr>';
-                    issuesHTML += '<td>'+ issues.number +'</td>';
-                    issuesHTML += '<td>'+ issues.title +'</td>';
-                    issuesHTML += '<td>'+ issues.body +'</td>';
+                    issuesHTML += '<td>'+ data.number +'</td>';
+                    issuesHTML += '<td>'+ data.title +'</td>';
+                    issuesHTML += '<td>'+ data.body +'</td>';
                     issuesHTML += '</tr>';
                     issuesHTML += '</tbody>';
-                $('#issuestable').append(issuesHTML)
+                $('#issuesTable').append(issuesHTML);
             }
         
 
