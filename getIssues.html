@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
     <meta charset="utf-8">
@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="content/metroui/css/metro-bootstrap.css">
     <link rel="stylesheet" href="content/metroui/css/metro-bootstrap-responsive.css">
 
-    <link rel="stylesheet" type="text/css" href="content/bootstrap3/css/bootstrapp.css">
-
-
-
 </head>
 <body class="metro">
     <!-- Start NavBar -->
@@ -25,8 +21,8 @@
                 <div class="element">
                     <a class="dropdown-toggle" href="#">NG-MASTERS</a>
                     <ul class="dropdown-menu" data-role="dropdown">
-                        <li><a href="index.html">NG-MASTERS - Course Home</a></li>
-                        <li><a href="http://hhalmeida.github.io">HUGO ALMEIDA IO PAGES</a></li>
+                        <li><a href="index.html">NG-MASTERS - Home</a></li>
+                        <li><a href="http://hhalmeida.github.io">HUGO IO PAGES</a></li>
                     </ul>
                 </div>
 
@@ -168,6 +164,7 @@
 
                 for (var i = 0; i < data.length; i++) {
                     addIssues(data[i]);
+                    $('#issuesTable').append('<tr><td>'+data[i].number+'</td><td>'+data[i].title+'</td><td>'+data[i].body'</td></tr>')
                     console.log("Number: "+data[i].number+"Title: "+data[i].title+"Description: "+data[i].body);
                 };
                 //alert("Data: " + data[0].body);
